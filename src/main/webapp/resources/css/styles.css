@@ -1,0 +1,46 @@
+.ui-layout-unit {
+    background: #00CED1
+}
+.ui-layout-north .ui-layout-unit-content{
+    background: #E8E8E8
+}
+.ui-layout-south .ui-layout-unit-content{
+    background: #E8E8E8
+}
+
+.names {
+   top:50px; 
+   min-width: 100%; 
+   border: 1px solid black;
+}
+.namesHeader {
+   min-width: 100%;
+   font-size: 25px; 
+   border: 1px solid black; 
+   text-align: center;
+   font-style: italic;
+}
+.nameFooter {
+   font-size: 25px;
+   border: 1px solid black; 
+   font-style: italic;
+   font-weight: bold
+}
+.last {
+   font-size: 25px; 
+   border: 1px solid black; 
+   height: 25px;
+   text-align: center;   
+}
+.first {
+   font-size: 25px; 
+   border: 1px solid black; 
+   text-align: center;   
+}
+.caption {
+        align-content: center;
+        color: black;
+        font-weight: bold; 
+	font-size: 25px;
+	font-style: italic;
+}

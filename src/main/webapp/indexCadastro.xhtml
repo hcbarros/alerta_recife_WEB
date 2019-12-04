@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Alerta Recife</title>
+        <script src="https://www.google.com/recaptcha/api.js"></script>
+    </h:head>
+    <h:body onload="#{Login.preencherBanco()}">
+        <h:graphicImage library="imagens" name="logo.png" id="logoARecife" class="logoARecife" title="Alerta Recife"/>
+        <h4>Alerta Recife</h4>
+        Cadastro de novos usuários
+        <h:form>
+            <h:panelGrid id="formcadastro">
+                
+                <!--email senha primeiro_nome ultimo_nome habilitado-->                
+                <h:outputText value="Email:" />
+                <p:inputText id="email" maxlength="100" required="true"
+                             value="#{Cadastro.email}" 
+                             requiredMessage=" O campo email deve ser preenchido!" />      
+                <h:message for="email" id="emailinvalido" binding="#{Cadastro.mybutton}" style="color:red"/>
+                <h:message for="emailinvalido" style="color:red"/>
+                
+                <h:outputText value="Senha:" />
+                <p:password id="senha" maxlength="200" required="true" 
+                            value="#{Cadastro.senha}" feedback="true"
+                            requiredMessage=" O campo senha deve ser preenchido!"
+                            promptLabel="Digite uma senha" weakLabel="Senha fraca"
+                            goodLabel="Senha boa" strongLabel="Senha forte" />
+                <h:message for="senha" style="color:red"/>
+                
+                <h:outputText value="Nome:" />
+                <p:inputText id="primeiro_nome" maxlength="50" required="true" 
+                             requiredMessage=" O campo nome deve ser preenchido!"
+                             value="#{Cadastro.nome}" />
+                <h:message for="primeiro_nome" style="color:red"/>
+
+                <h:outputText value="Sobrenome:" />
+                <p:inputText id="ultimo_nome" maxlength="50" required="true"
+                             requiredMessage=" O campo sobrenome deve ser preenchido!"
+                             value="#{Cadastro.sobrenome}" />
+                <h:message for="ultimo_nome" style="color:red"/>              
+                
+            </h:panelGrid>
+            <p></p>
+            <h:outputLabel id="recaptcha">
+                <div class="g-recaptcha" data-sitekey="6LcA4BETAAAAAI-bIVcCocgXyiLZ43bCJ-JyCvWV"></div>
+            </h:outputLabel>
+            <br></br>
+            <h:commandButton action="#{Cadastro.cadastrar}" value="Cadastrar" />          
+            <h:message for="recaptcha" id="captcha" binding="#{Cadastro.mybutton}" style="color:red"/>
+                <a style="font-size: 20px;"><h:message for="captcha" style="color:red"/></a>
+        </h:form>
+        
+        <p>
+            <h:link outcome="indexLogin" value="Tela de login" />
+        </p>
+        
+    </h:body>
+
+</html>
+

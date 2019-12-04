@@ -1,0 +1,80 @@
+package ifpe.recife.tads.alerta_recife.servico;
+
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import static javax.ejb.TransactionAttributeType.SUPPORTS;
+import javax.persistence.TypedQuery;
+import javax.validation.constraints.NotNull;
+import javax.validation.executable.ExecutableType;
+import javax.validation.executable.ValidateOnExecution;
+import org.hibernate.validator.constraints.NotBlank;
+import ifpe.recife.tads.alerta_recife.*;
+
+@Stateless(name = "ejb/UsuarioServico") // O professor comentou que é padrão
+@LocalBean
+@ValidateOnExecution(type = ExecutableType.ALL)
+public class UsuarioServico extends Servico<Usuario> {
+
+    @PostConstruct
+    public void init() {
+        super.setClasse(Usuario.class);
+    }
+    
+    @Override
+    public Usuario criar() {
+        return new Usuario();
+    }
+    
+    
+        
+    public boolean existeUsuarioPorId(@NotNull Usuario entidade) {
+        TypedQuery<Usuario> query
+                = entityManager.createNamedQuery("Usuario.RecuperarPorId", classe);
+        query.setParameter(1, entidade.getId());
+        return !query.getResultList().isEmpty();
+    }
+
+    public boolean existeUsuarioPorPrimeiroNome(@NotNull Usuario entidade) {
+        TypedQuery<Usuario> query
+                = entityManager.createNamedQuery("Usuario.RecuperarPorPrimeiroNome", classe);
+        query.setParameter(1, entidade.getPrimeiroNome());
+        return !query.getResultList().isEmpty();
+    }
+    
+    public boolean existeUsuarioPorUltimoNome(@NotNull Usuario entidade) {
+        TypedQuery<Usuario> query
+                = entityManager.createNamedQuery("Usuario.RecuperarPorUltimoNome", classe);
+        query.setParameter(1, entidade.getUltimoNome());
+        return !query.getResultList().isEmpty();
+    }
+    
+    public boolean existeUsuarioPorEmail(@NotNull Usuario entidade) {
+        TypedQuery<Usuario> query
+                = entityManager.createNamedQuery("Usuario.RecuperarPorEmail", classe);
+        query.setParameter(1, entidade.getEmail());
+        return !query.getResultList().isEmpty();
+    }
+        
+    @TransactionAttribute(SUPPORTS) 
+    public Usuario consultarPorNome(@NotNull String nome) {
+        return super.consultarEntidade(new Object[] {nome}, "Usuario.RecuperarPorNome");
+    }
+
+    @TransactionAttribute(SUPPORTS) 
+    public Usuario consultarPorEmail(@NotNull String email) {
+        List<Usuario> lista =  super.consultarEntidades(new Object[] {email}, "Usuario.RecuperarPorEmail");
+        return lista.isEmpty() ? null : lista.get(0);
+    }
+
+//    Terminar de escrever a query    
+//    @TransactionAttribute(SUPPORTS)
+//    public List<Usuario> consultarPorTelefone(@NotBlank List<Telefone> telefones) {
+//        return super.consultarEntidades(new Object[] {telefones}, "Usuario.RecuperarPorTelefone");
+//    }
+    
+}
+// Nem precisa da maioria das notações. O professor colocou para ilustrar.
+
