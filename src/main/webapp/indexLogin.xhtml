@@ -24,10 +24,11 @@
             <p></p>
             <div class="g-recaptcha" data-sitekey="6LcA4BETAAAAAI-bIVcCocgXyiLZ43bCJ-JyCvWV"></div>
             <br></br>
-            <h:commandButton id="mybutton" 
-                     binding="#{Login.mybutton}" 
+            <p:commandButton ajax="false"
                      action="#{Login.fazerLogin}" value="Entrar" />
+            <p:outputLabel binding="#{Login.mybutton}" id="mybutton" />
             <a style="color:red; font-size: 20px"><h:message for="mybutton" /></a>
+            
         </h:form>
         
         

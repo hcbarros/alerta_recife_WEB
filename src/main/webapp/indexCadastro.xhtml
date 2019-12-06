@@ -19,18 +19,18 @@
                 <!--email senha primeiro_nome ultimo_nome habilitado-->                
                 <h:outputText value="Email:" />
                 <p:inputText id="email" maxlength="100" required="true"
-                             value="#{Cadastro.email}" 
+                             value="#{Cadastro.email}" binding="#{Cadastro.campoInvalido}"
                              requiredMessage=" O campo email deve ser preenchido!" />      
-                <h:message for="email" id="emailinvalido" binding="#{Cadastro.mybutton}" style="color:red"/>
-                <h:message for="emailinvalido" style="color:red"/>
+                <p:message for="email" style="color:red"/>
                 
                 <h:outputText value="Senha:" />
+                
                 <p:password id="senha" maxlength="200" required="true" 
                             value="#{Cadastro.senha}" feedback="true"
                             requiredMessage=" O campo senha deve ser preenchido!"
                             promptLabel="Digite uma senha" weakLabel="Senha fraca"
                             goodLabel="Senha boa" strongLabel="Senha forte" />
-                <h:message for="senha" style="color:red"/>
+                <p:message for="senha" style="color:red"/>
                 
                 <h:outputText value="Nome:" />
                 <p:inputText id="primeiro_nome" maxlength="50" required="true" 
@@ -50,9 +50,9 @@
                 <div class="g-recaptcha" data-sitekey="6LcA4BETAAAAAI-bIVcCocgXyiLZ43bCJ-JyCvWV"></div>
             </h:outputLabel>
             <br></br>
-            <h:commandButton action="#{Cadastro.cadastrar}" value="Cadastrar" />          
+            <p:commandButton action="#{Cadastro.cadastrar}" ajax="false" value="Cadastrar" />          
             <h:message for="recaptcha" id="captcha" binding="#{Cadastro.mybutton}" style="color:red"/>
-                <a style="font-size: 20px;"><h:message for="captcha" style="color:red"/></a>
+                <h:message for="captcha" style="font-size:20px; color:red"/>
         </h:form>
         
         <p>

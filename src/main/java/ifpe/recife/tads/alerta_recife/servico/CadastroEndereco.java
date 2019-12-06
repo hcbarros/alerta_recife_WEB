@@ -10,6 +10,7 @@ import ifpe.recife.tads.alerta_recife.Endereco;
 import ifpe.recife.tads.alerta_recife.PontoDeRisco;
 import ifpe.recife.tads.alerta_recife.Solicitacao;
 import ifpe.recife.tads.alerta_recife.Usuario;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -27,7 +28,7 @@ import org.primefaces.event.SelectEvent;
 
 @ManagedBean(name="Endereco")
 @RequestScoped
-public class CadastroEndereco {
+public class CadastroEndereco implements Serializable {
         
     @EJB
     private EnderecoServico enderecoServico; 
@@ -46,10 +47,12 @@ public class CadastroEndereco {
     private static Usuario usuario = null;
     private String tipo = null;
     private String descricao = null;
+    private UIComponent mybutton;
+    protected static String resp = "";
     
     
     
-    public void cadastrar() {
+    public String cadastrar() {
                 
         lista = enderecoServico.recuperarEnderecos();
                 
@@ -67,14 +70,24 @@ public class CadastroEndereco {
         endereco.setPontoDeRisco(ponto_risco);
         endereco.setCoordenada(coordenada);                
         
-        enderecoServico.persistir(endereco);           
+        enderecoServico.persistir(endereco);    
+        resp = "Dados cadastrados com sucesso!";
+        
+        return "cadastro";
     }
       
-    public void solicitarServico() {
+     
+    public String solicitarServico() {
                
         
+        FacesContext context = FacesContext.getCurrentInstance();
         Solicitacao sol = new Solicitacao();
         sol.setDescricao(descricao);
+        if(selected == null) {
+        context.addMessage(mybutton.getClientId(context), 
+                                  new FacesMessage("","Selecione uma área de risco!"));
+                                  return "servico";
+        }
         sol.setEndereco(selected);
         sol.setTipoDeSolicitacao(Integer.parseInt(tipo));
         
@@ -91,6 +104,9 @@ public class CadastroEndereco {
             c.set(ano, mes, dia, hora, min);
         sol.setDataSolicitacao(c.getTime());
         solicitacaoServico.persistir(sol);       
+        resp = "Dados cadastrados com sucesso!";
+        
+        return "retornoservico";
     }
      
        
@@ -198,4 +214,21 @@ public class CadastroEndereco {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+    
+    public UIComponent getMybutton() {
+        return mybutton;
+    }
+    
+    public void setMybutton(UIComponent mybutton) {
+        this.mybutton = mybutton;
+    }
+    
+    public String getResp() {
+        return resp;
+    }
+    
+    public void setResp(String resp) {
+        this.resp = resp;
+    }
+    
 }

@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+           
+    <f:view contentType="text/html">
+        <h:head>
+            <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+            <h:outputStylesheet library="css" name="styles.css" />
+            <h:outputScript library="js" name="index.js" />
+            <script type='text/javascript' src='#{Login.MAP_KEY}' async='true' defer='true'></script>
+        </h:head>
+        
+
+        <h:body onload="esconder()">
+            
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                    <p:graphicImage style="width:80px; height:80px" library="imagens" name="logo.png"/>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
+                    
+                </p:layoutUnit>
+
+                
+                <p:layoutUnit position="west" size="210" header="Servicos" collapsible="true">
+                    <h:form>
+                    <p:menu>
+                        <p:submenu label="Opções">
+                            <p:menuitem value="Solicitar serviço" action="/usuario/servico.xhtml" />
+                            <p:menuitem value="Contatos" onclick="contatos()" />
+                            <p:menuitem value="Salvar telefone" action="/usuario/telefone.xhtml" />
+                            <p:menuitem action="/indexLogin.xhtml" value="Sair" />
+                        </p:submenu>
+
+                    </p:menu>
+                    </h:form>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center">
+                                     
+                    <p id="resp" style="font-size: 25px; font-weight: bold" >#{Endereco.resp}</p>
+                    #{Endereco.setResp("")}
+                    
+                    <div style="display: none" id="contatos">
+                        <h:form>
+
+                            <p:dataTable value="#{Contato.lista}" var="contato" >
+                                <p:column headerText="Descrição">
+                                    <h:outputText value="#{contato.descricao}" />
+                                </p:column>   
+                                <p:column headerText="Número">
+                                    <h:outputText value="#{contato.numero}" />
+                                </p:column>                               
+                            </p:dataTable>                        
+
+                        </h:form>   
+                    </div>    
+                                       
+                        
+                </p:layoutUnit>
+
+            </p:layout>
+            
+        </h:body>
+
+    </f:view>
+</html>
+

@@ -28,6 +28,8 @@ public class Cadastro {
     private static String nome = null;
     private static String sobrenome = null;
     private UIComponent mybutton;
+    private UIComponent campoInvalido;
+    
         
     public boolean validarEmail(String email) {
 				
@@ -49,7 +51,7 @@ public class Cadastro {
         FacesContext context = FacesContext.getCurrentInstance();
         
         if(!validarEmail(email)) {
-            context.addMessage(mybutton.getClientId(context), 
+            context.addMessage(campoInvalido.getClientId(context), 
                     new FacesMessage("","Informe um email válido!"));
             return "invalido";
         }
@@ -57,7 +59,7 @@ public class Cadastro {
         Usuario user = usuarioServico.consultarPorEmail(email);
                                      
         if(user != null) {
-            context.addMessage(mybutton.getClientId(context), 
+            context.addMessage(campoInvalido.getClientId(context), 
                     new FacesMessage("","O email informado já existe!"));
             return "invalido";            
         }   
@@ -128,6 +130,14 @@ public class Cadastro {
 
     public UIComponent getMybutton() {
         return mybutton;
+    }
+    
+    public void setCampoInvalido(UIComponent campoInvalido) {
+        this.campoInvalido = campoInvalido;
+    }
+
+    public UIComponent getCampoInvalido() {
+        return campoInvalido;
     }
     
 }

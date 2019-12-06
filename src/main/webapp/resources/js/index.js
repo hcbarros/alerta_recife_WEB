@@ -1,42 +1,20 @@
 
         
     function esconder() {
-        
-        document.getElementById('myMap').style.display = 'none';
-        document.getElementById('contatos').style.display = 'none';
-        document.getElementById('tabela').style.display = 'none';
-        document.getElementById('telefone').style.display = 'none';
+              
+        document.getElementById('contatos').style.display = 'none';          
     }
-    
-    function tabela() {
-        document.getElementById('tabela').style.display = 'block';
-        document.getElementById('contatos').style.display = 'none';
-        document.getElementById('myMap').style.display = 'none';
-        document.getElementById('telefone').style.display = 'none';
-    }
-    
+       
     function contatos() {
+              
         document.getElementById('contatos').style.display = 'block';
-        document.getElementById('tabela').style.display = 'none';
-        document.getElementById('myMap').style.display = 'none';
-        document.getElementById('telefone').style.display = 'none';
-    }
-    
-    function cadastroTel() {
-        document.getElementById('telefone').style.display = 'block';
-        document.getElementById('tabela').style.display = 'none';
-        document.getElementById('myMap').style.display = 'none';
-        document.getElementById('contatos').style.display = 'none';
+        document.getElementById('resp').style.display = 'none';
     }
    
-    function validar() {
-        
-    }
-   
-   
+
+
                 function loadMapScenario() {
                     
-                    document.getElementById('myMap').style.display = 'block';
                     
                     var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {center: new Microsoft.Maps.Location(-8.0791787, -34.9051573)});
                     Microsoft.Maps.loadModule('Microsoft.Maps.DrawingTools', function () {
@@ -86,8 +64,9 @@
                                 
                                     PF('dlg').show();
                                     
-                                }
-                                else (this.status);
+                            }
+                            
+                            else (this.status);
                         };
                                 xhttp.open("GET", "https://nominatim.openstreetmap.org/reverse?format=json&lat="+location.latitude+"&lon="+location.longitude+"");
                                 xhttp.send();
@@ -95,6 +74,4 @@
                     
                 }
             
-    
-    onload = esconder;
-             
+   

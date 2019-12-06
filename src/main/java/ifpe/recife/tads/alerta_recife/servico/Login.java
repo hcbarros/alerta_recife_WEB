@@ -26,6 +26,7 @@ public class Login {
     private static String email = null;
     private static String senha = null;
     private static Usuario user = null;
+    private static String tipo = null;
     private static String banco = null;
     private static final String MAP_KEY = "https://www.bing.com/api/maps/mapcontrol?key=AvltJznm3FCdzkLGAv5FejAGp7JPsdfDsn7Xi-pYp-q1osNmljdeo9HPZkq9SjC8&callback=loadMapScenario";
     private UIComponent mybutton;
@@ -35,7 +36,9 @@ public class Login {
                 
         FacesContext context = FacesContext.getCurrentInstance();
         user = usuarioServico.consultarPorEmail(email);
-                               
+        tipo = user != null ? user.getClass().getSimpleName() : null;
+        
+        
          try {
               String gRecaptchaResponse = context.
 		getExternalContext().getRequestParameterMap().get("g-recaptcha-response");
@@ -48,7 +51,8 @@ public class Login {
                          if(verify){
                            HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
                            sessao.setAttribute("logado", user);
-                           return "encontrado";  
+                           if(tipo.equals("Usuario")) return "encontrado";
+                           else return "admin";                    
                          }
                          else{
                              context.addMessage(mybutton.getClientId(context), 
@@ -110,6 +114,14 @@ public class Login {
     
     public void setUser(Usuario user) {
         this.user = user;
+    }
+    
+    public String getTipo() {
+        return tipo;
+    }
+    
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
     
     public void setBanco(String banco) {

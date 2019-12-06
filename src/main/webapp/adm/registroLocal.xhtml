@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+           
+    <f:view contentType="text/html">
+        <h:head>
+            <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+            <h:outputStylesheet library="css" name="styles.css" />
+            <h:outputScript library="js" name="index.js" />
+            <script type='text/javascript' src='#{Login.MAP_KEY}' async='true' defer='true'></script>
+        </h:head>
+        
+
+        <h:body>
+            
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                    <p:graphicImage style="width:80px; height:80px" library="imagens" name="logo.png"/>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
+                    
+                </p:layoutUnit>
+                
+              
+                <p:layoutUnit position="west" size="210" header="Servicos" collapsible="true">
+                    <h:form>
+                    <p:menu>
+                        <p:submenu label="Opções">
+                            <p:menuitem action="/adm/principal.xhtml" value="Voltar"/>
+                            <p:menuitem action="/indexLogin.xhtml" value="Sair" />
+                        </p:submenu>
+
+                    </p:menu>
+                    </h:form>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center">
+                    <div id='myMap'  style='width: 100vw; height: 100vh;'></div>
+                                        
+                    <p:dialog position="center" modal="true" width="300" appendTo="@(body)" header="Área de risco" widgetVar="dlg" hideEffect="fade" showEffect="fade">
+                     <h:form prependId="false">
+                        <!--<h:panelGrid columns="2">-->
+                        <!--Ajustar o posicionamento-->
+                        <h:panelGrid >
+                            <a id="cidade" style="font-weight: bold; font-size: 15px" ></a>
+                            <h:inputHidden id="cidade1" value="#{Endereco.cidade}" />
+                            <a id="bairro" style="font-weight: bold; font-size: 15px" ></a>
+                            <h:inputHidden id="bairro1" value="#{Endereco.bairro}" />
+                            <a id="rua" style="font-weight: bold; font-size: 15px" ></a>
+                            <h:inputHidden id="rua1" value="#{Endereco.rua}" />
+                            <a id="numero" style="font-weight: bold; font-size: 15px" ></a>
+                            <h:inputHidden id="numero1" value="#{Endereco.numero}" />
+                            <a id="CEP" style="font-weight: bold; font-size: 15px" ></a>
+                            <h:inputHidden id="CEP1" value="#{Endereco.CEP}" />                            
+                            
+                            <h:inputHidden id="lat" value="#{Endereco.pontoX}" />
+                            <h:inputHidden id="long" value="#{Endereco.pontoY}" />
+                            
+                            <p:outputLabel for="tipo_risco" value="Tipo de risco:" />
+                            <p:selectOneMenu id="tipo_risco" value="#{Endereco.risco}" style="width:125px">
+                                <f:selectItem itemLabel="Deslizamento" itemValue="1" />
+                                <f:selectItem itemLabel="Alagamento" itemValue="2" />
+                                <f:selectItem itemLabel="Estrutural" itemValue="3" />
+                            </p:selectOneMenu>
+                            <p></p>    
+                            <f:facet name="footer">
+                                <p:commandButton ajax="false" value="Cadastrar" action="#{Endereco.cadastrar}"  />
+                                <p:commandButton value="Cancelar" onclick="PF('dlg').hide();"/>                                
+                            </f:facet>
+                        </h:panelGrid>
+                        
+                     </h:form>
+                    </p:dialog>
+                                                                
+                </p:layoutUnit>
+
+            </p:layout>
+            
+        </h:body>
+
+    </f:view>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+           
+    <f:view contentType="text/html">
+        <h:head>
+            <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+            <h:outputStylesheet library="css" name="styles.css" />
+            <h:outputScript library="js" name="index.js" />
+        </h:head>
+        
+
+        <h:body>
+            
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                    <p:graphicImage style="width:80px; height:80px" library="imagens" name="logo.png"/>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
+                    
+                </p:layoutUnit>
+               
+                <p:layoutUnit position="west" size="210" header="Servicos" collapsible="true">
+                    <h:form>
+                    <p:menu>
+                        <p:submenu label="Opções">
+                            <p:menuitem value="Voltar" action="/usuario/principal.xhtml" />
+                            <p:menuitem action="/indexLogin.xhtml" value="Sair" />
+                        </p:submenu>
+
+                    </p:menu>
+                    </h:form>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center">
+                                                   
+                    <div id="telefone">
+                        <h:form>
+
+                        <p:outputLabel style="font-size:25px; font-weight: bold" value="Cadastrar telefone" />  <br></br><br></br>  
+                        <p:outputLabel  style="font-weight: bold" value="DDD: " /> <br></br>
+                        <p:inputText id="ddd" value="#{Telefone.ddd}" maxlength="3" required="true" 
+                                         requiredMessage="O campo ddd deve ser preenchido!"
+                                         converterMessage=" O campo ddd é numérico!"
+                                         />
+                        <a style="color:red; font-size: 20px"><h:message for="ddd" /></a>
+                        <br></br><br></br>
+                        <p:outputLabel  style="font-weight: bold" value="Número: " /> <br></br>
+                        <p:inputText id="num" value="#{Telefone.telefone}" maxlength="10" required="true" 
+                                         requiredMessage=" O campo número deve ser preenchido!" 
+                                         converterMessage=" O campo número é numérico!"
+                                         />
+                        <a style="color:red; font-size: 20px"><h:message for="num" /></a>
+                        <br></br><br></br>
+                        <p:commandButton ajax="false" action="#{Telefone.cadastrar()}" value="Cadastrar" />
+                                                 
+                        </h:form>   
+                    </div>   
+                    
+                        
+                </p:layoutUnit>
+
+            </p:layout>
+            
+        </h:body>
+
+    </f:view>
+</html>
+

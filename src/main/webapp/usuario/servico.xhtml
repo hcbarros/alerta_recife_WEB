@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+           
+    <f:view contentType="text/html">
+        <h:head>
+            <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+            <h:outputStylesheet library="css" name="styles.css" />
+            <h:outputScript library="js" name="index.js" />            
+        </h:head>
+        
+
+        <h:body>
+            
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                    <p:graphicImage style="width:80px; height:80px" library="imagens" name="logo.png"/>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
+                    
+                </p:layoutUnit>
+
+<!--                <p:dialog header="Registro de ocorrências" widgetVar="dlg1" minHeight="40">
+                value="value-one &lt;br /&gt; value-two &lt;br /&gt; value-three" escape="false" />
+                <h:outputText value="No mapa do Recife, clique na localidade onde existe alguma ocorrência.
+                              &lt;br /&gt; Este local deve ser o mais exato possível!
+                              &lt;br /&gt; 
+                              &lt;br /&gt; O menu de opções apresenta outras solicitações!" escape="false" />
+                </p:dialog>-->
+                
+                <p:layoutUnit position="west" size="210" header="Servicos" collapsible="true">
+                    <h:form>
+                    <p:menu>
+                        <p:submenu label="Opções">
+                            <p:menuitem action="/usuario/principal.xhtml" value="Voltar" />
+                            <p:menuitem action="/indexLogin.xhtml" value="Sair" />
+                        </p:submenu>
+
+                    </p:menu>
+                    </h:form>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center">
+                                 
+                    <h:form>
+                        <p:dataTable id="radioDT" var="endereco" value="#{Endereco.lista}" selection="#{Endereco.selected}" rowKey="#{endereco.id}">
+                            <f:facet name="header">
+                                Selecione uma área de risco
+                            </f:facet>                            
+                            <p:column headerText="CEP">
+                                <h:outputText value="#{endereco.CEP}" />
+                            </p:column>
+                            <p:column headerText="Cidade">
+                                <h:outputText value="#{endereco.cidade}" />
+                            </p:column>
+                            <p:column headerText="Bairro">
+                                <h:outputText value="#{endereco.bairro}" />
+                            </p:column>
+                            <p:column headerText="Rua">
+                                <h:outputText value="#{endereco.rua}" />
+                            </p:column>
+                            <p:column headerText="Número">
+                                <h:outputText value="#{endereco.numero}" />
+                            </p:column>
+                            <p:column headerText="Tipo de risco">
+                                <h:outputText value='#{endereco.pontoDeRisco.tipoDeRisco == 1 ? "Deslizamento" : 
+                                        endereco.pontoDeRisco.tipoDeRisco == 2 ? "Alagamento" : "Estrutural"}' />
+                            </p:column>
+                            <p:column selectionMode="single" style="width:16px;text-align:center"/>
+                            <f:facet name="footer">
+                                <p:commandButton style="display: none;" process="radioDT" value="Processar" />
+                            </f:facet>
+                        </p:dataTable>
+                        
+                           <p></p> 
+                           <p:outputLabel for="solic" style="font-weight: bold" value="Tipo de solicitação:" /> <br></br>
+                            <p:selectOneMenu id="solic" value="#{Endereco.tipo}" style="width:125px">
+                                <f:selectItem itemLabel="Vistoria" itemValue="1" />
+                                <f:selectItem itemLabel="Lona" itemValue="2" />
+                                <f:selectItem itemLabel="Capinação" itemValue="3" />
+                                <f:selectItem itemLabel="Entulhos" itemValue="4" />
+                            </p:selectOneMenu>
+                        <br></br><br></br>
+                        <p:outputLabel style="font-weight: bold" value="Descrição: " /> <br></br>
+                        <p:inputTextarea id="descri" required="true" maxlength="220" value="#{Endereco.descricao}"
+                                         requiredMessage="O campo descrição deve ser preenchido!" />
+                        <a style="color:red; font-size: 20px"><h:message for="descri" /></a>
+                        
+                        <p></p>
+                        <p:commandButton ajax="false" action="#{Endereco.solicitarServico}" value="Cadastrar" />
+                        <p:outputLabel binding="#{Endereco.mybutton}" id="mybutton" />
+                        <a style="color:red; font-size: 20px"><h:message for="mybutton" /></a>
+                    </h:form>   
+                                                                
+                </p:layoutUnit>
+
+            </p:layout>
+            
+        </h:body>
+
+    </f:view>
+</html>
+

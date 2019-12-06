@@ -10,6 +10,7 @@ import ifpe.recife.tads.alerta_recife.Usuario;
 import javax.ejb.EJB;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
@@ -20,36 +21,40 @@ public class CadastroTelefone {
         
     @EJB
     private TelefoneServico telefoneServico; 
-    private String ddd = "";
-    private String telefone = "";
-        
+    private int ddd;
+    private long telefone;
+   
+    private CadastroEndereco endereco;    
     
-    public void cadastrar() {
+    
+    public String cadastrar() {
                
         Telefone tel = new Telefone();
-        tel.setDdd(ddd);
-        tel.setNumero(telefone);
+        tel.setDdd(Integer.toString(ddd));
+        tel.setNumero(Long.toString(telefone));
         HttpSession sessao = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         Usuario usuarioLogado = (Usuario) sessao.getAttribute("logado");
         tel.setUsuario(usuarioLogado);        
         telefoneServico.persistir(tel);       
-        
+        CadastroEndereco.resp = "Dados cadastrados com sucesso!";
+
+        return "telefone";
     }
      
         
-    public String getDdd() {
+    public int getDdd() {
         return ddd;
     }
     
-    public void setDdd(String ddd) {
+    public void setDdd(int ddd) {
         this.ddd = ddd;
     }
     
-    public String getTelefone() {
+    public long getTelefone() {
         return telefone;
     }
     
-    public void setTelefone(String telefone) {
+    public void setTelefone(long telefone) {
         this.telefone = telefone;
     }
 }
