@@ -31,7 +31,7 @@ public class Cadastro {
     private UIComponent campoInvalido;
     
         
-    public boolean validarEmail(String email) {
+    public static boolean validarEmail(String email) {
 				
 	boolean isValid = false;
         if (email != null && email.length() > 0) {

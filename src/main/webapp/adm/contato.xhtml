@@ -11,11 +11,10 @@
             <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
             <h:outputStylesheet library="css" name="styles.css" />
             <h:outputScript library="js" name="index.js" />
-            
         </h:head>
         
 
-        <h:body onload="esconder()">
+        <h:body>
             
             <p:layout fullPage="true">
 
@@ -26,19 +25,12 @@
                 <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
                     
                 </p:layoutUnit>
-
                
                 <p:layoutUnit position="west" size="210" header="Servicos" collapsible="true">
                     <h:form>
                     <p:menu>
                         <p:submenu label="Opções">
-                            <p:menuitem action="/adm/registroLocal.xhtml" value="Registrar área de risco"/>
-                            <p:menuitem action="/adm/servico.xhtml" value="Solicitar serviço"/>
-                            <p:menuitem action="/adm/telefone.xhtml" value="Salvar telefone"/>
-                            <p:menuitem action="/adm/contato.xhtml" value="Salvar contato"/>
-                            <p:menuitem value="Listar contatos" onclick="contatos()" />
-                            <p:menuitem action="/adm/usuarios.xhtml" value="Listar usuários" />
-                            <p:menuitem action="/adm/alterarDados.xhtml" value="Alterar dados pessoais" />
+                            <p:menuitem value="Voltar" action="/adm/principal.xhtml" />
                             <p:menuitem action="/indexLogin.xhtml" value="Sair" />
                         </p:submenu>
 
@@ -47,26 +39,30 @@
                 </p:layoutUnit>
 
                 <p:layoutUnit position="center">
-                    
-                    <p id="resp" style="font-size: 25px; font-weight: bold" >#{Endereco.resp}</p>
-                    #{Endereco.setResp("")}
-                                       
-                    <div style="display: none" id="contatos">
-                        
+                                                   
+                    <div >
                         <h:form>
-                            
-                            <p:dataTable value="#{Contato.lista}" var="contato" >
-                                <p:column headerText="Descrição">
-                                    <h:outputText value="#{contato.descricao}" />
-                                </p:column>   
-                                <p:column headerText="Número">
-                                    <h:outputText value="#{contato.numero}" />
-                                </p:column>                               
-                            </p:dataTable>                        
 
+                        <p:outputLabel style="font-size:25px; font-weight: bold" value="Cadastrar contato" />  <br></br><br></br>  
+                        <p:outputLabel  style="font-weight: bold" value="Descrição: " /> <br></br>
+                        <p:inputText id="descricao" value="#{Contato.descricao}" maxlength="100" required="true" 
+                                         requiredMessage="O campo descrição deve ser preenchido!"                                         
+                                         />
+                        <a style="color:red; font-size: 20px"><h:message for="descricao" /></a>
+                        <br></br><br></br>
+                        <p:outputLabel  style="font-weight: bold" value="Telefone: " /> <br></br>
+                        <p:inputText id="num" value="#{Contato.telefone}" maxlength="10" required="true" 
+                                         requiredMessage=" O campo telefone deve ser preenchido!" 
+                                         converterMessage=" O campo telefone é numérico!"
+                                         />
+                        <a style="color:red; font-size: 20px"><h:message for="num" /></a>
+                        <br></br><br></br>
+                        <p:commandButton ajax="false" action="#{Contato.cadastrar()}" value="Cadastrar" />
+                                                 
                         </h:form>   
-                    </div>    
-                                          
+                    </div>   
+                    
+                        
                 </p:layoutUnit>
 
             </p:layout>

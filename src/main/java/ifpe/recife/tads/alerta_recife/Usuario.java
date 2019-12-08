@@ -53,7 +53,11 @@ import org.hibernate.validator.constraints.Email;
             @NamedQuery(
                     name = "Usuario.RecuperarPorId",
                     query = "SELECT u FROM Usuario u WHERE u.id = ?1"
-            )
+            ),
+            @NamedQuery(
+                    name = "Usuario.RecuperarUsuarios",
+                    query = "SELECT u FROM Usuario u ORDER BY u.id"
+            )            
                  
         }
 )

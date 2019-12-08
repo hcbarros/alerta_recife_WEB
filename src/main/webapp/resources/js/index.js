@@ -1,16 +1,16 @@
+  
 
-        
     function esconder() {
-              
-        document.getElementById('contatos').style.display = 'none';          
+        
+        document.getElementById("contatos").style.display = "none";
+        document.getElementById("resp").style.display = "block";
     }
-       
+
     function contatos() {
-              
-        document.getElementById('contatos').style.display = 'block';
-        document.getElementById('resp').style.display = 'none';
+        
+        document.getElementById("contatos").style.display = "block";
+        document.getElementById("resp").style.display = "none";
     }
-   
 
 
                 function loadMapScenario() {

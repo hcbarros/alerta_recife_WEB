@@ -31,7 +31,7 @@
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
-        <from-view-id>/usuario/servico.xhtml</from-view-id>
+        <from-view-id>/usuario/*</from-view-id>
         <navigation-case>
             <from-outcome>servico</from-outcome>
             <to-view-id>/usuario/servico.xhtml</to-view-id>
@@ -39,10 +39,14 @@
         <navigation-case>
             <from-outcome>retornoservico</from-outcome>
             <to-view-id>/usuario/principal.xhtml</to-view-id>
-        </navigation-case>        
+        </navigation-case>  
+        <navigation-case>
+            <from-outcome>alteradados</from-outcome>
+            <to-view-id>/usuario/alterarDados.xhtml</to-view-id>
+        </navigation-case>      
     </navigation-rule>   
     <navigation-rule>
-        <from-view-id>/adm/servico.xhtml</from-view-id>
+        <from-view-id>/adm/*</from-view-id>
         <navigation-case>
             <from-outcome>servico</from-outcome>
             <to-view-id>/adm/servico.xhtml</to-view-id>
@@ -50,7 +54,27 @@
         <navigation-case>
             <from-outcome>retornoservico</from-outcome>
             <to-view-id>/adm/principal.xhtml</to-view-id>
-        </navigation-case>        
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>usuario</from-outcome>
+            <to-view-id>/adm/usuarios.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>alterausuario</from-outcome>
+            <to-view-id>/adm/alteraUsuario.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>alteradados</from-outcome>
+            <to-view-id>/adm/alterarDados.xhtml</to-view-id>
+        </navigation-case> 
+        <navigation-case>
+            <from-outcome>telefone</from-outcome>
+            <to-view-id>/adm/principal.xhtml</to-view-id>
+        </navigation-case>         
+        <navigation-case>
+            <from-outcome>cadastro</from-outcome>
+            <to-view-id>/adm/principal.xhtml</to-view-id>
+        </navigation-case>  
     </navigation-rule>   
     <navigation-rule>
         <from-view-id>/usuario/telefone.xhtml</from-view-id>
@@ -59,19 +83,5 @@
             <to-view-id>/usuario/principal.xhtml</to-view-id>
         </navigation-case>            
     </navigation-rule>    
-    <navigation-rule>
-        <from-view-id>/adm/telefone.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>telefone</from-outcome>
-            <to-view-id>/adm/principal.xhtml</to-view-id>
-        </navigation-case>            
-    </navigation-rule>   
-    <navigation-rule>
-        <from-view-id>/adm/registroLocal.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>cadastro</from-outcome>
-            <to-view-id>/adm/principal.xhtml</to-view-id>
-        </navigation-case>            
-    </navigation-rule>  
-     
+    
 </faces-config>

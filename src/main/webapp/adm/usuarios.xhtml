@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+           
+    <f:view contentType="text/html">
+        <h:head>
+            <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+            <h:outputStylesheet library="css" name="styles.css" />
+            <h:outputScript library="js" name="index.js" />            
+        </h:head>
+        
+
+        <h:body>
+            
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                    <p:graphicImage style="width:80px; height:80px" library="imagens" name="logo.png"/>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
+                    
+                </p:layoutUnit>
+
+              
+                <p:layoutUnit position="west" size="210" header="Servicos" collapsible="true">
+                    <h:form>
+                    <p:menu>
+                        <p:submenu label="Opções">
+                            <p:menuitem action="/adm/principal.xhtml" value="Voltar" />
+                            <p:menuitem action="/indexLogin.xhtml" value="Sair" />
+                        </p:submenu>
+
+                    </p:menu>
+                    </h:form>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center">
+                                 
+                    <h:form>
+                        <p:dataTable id="radioDT" var="usuario" value="#{Usuario.lista}" selection="#{Usuario.selected}" rowKey="#{usuario.id}">
+                            <f:facet name="header">
+                                Selecione um usuário
+                            </f:facet>                            
+                            <p:column headerText="Email">
+                                <h:outputText value="#{usuario.email}" />
+                            </p:column>
+                            <p:column headerText="Primeiro nome">
+                                <h:outputText value="#{usuario.primeiroNome}" />
+                            </p:column>
+                            <p:column headerText="Último nome">
+                                <h:outputText value="#{usuario.ultimoNome}" />
+                            </p:column>
+                            <p:column headerText="Habilitado">
+                                <h:outputText value="#{usuario.habilitado}" />
+                            </p:column>
+                            <p:column selectionMode="single" style="width:16px;text-align:center"/>
+                            <f:facet name="footer">
+                                <p:commandButton style="display: none;" process="radioDT" value="Processar" />
+                            </f:facet>
+                        </p:dataTable>
+                                                   
+                        <p></p>
+                        <p:commandButton ajax="false" action="#{Usuario.excluir()}" value="Excluir" />
+                        <p:commandButton ajax="false" action="#{Usuario.alterar()}" value="Alterar" />
+                        <p:outputLabel binding="#{Usuario.mybutton}" id="mybutton" />
+                        <a style="color:red; font-size: 20px"><h:message for="mybutton" /></a>
+                    </h:form>   
+                                                                
+                </p:layoutUnit>
+
+            </p:layout>
+            
+        </h:body>
+
+    </f:view>
+</html>
+

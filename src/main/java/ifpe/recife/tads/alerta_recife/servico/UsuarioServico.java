@@ -57,6 +57,12 @@ public class UsuarioServico extends Servico<Usuario> {
         query.setParameter(1, entidade.getEmail());
         return !query.getResultList().isEmpty();
     }
+    
+    public List<Usuario> recuperarUsuarios() {
+        TypedQuery<Usuario> query
+                = entityManager.createNamedQuery("Usuario.RecuperarUsuarios", classe);
+        return query.getResultList();
+    }  
         
     @TransactionAttribute(SUPPORTS) 
     public Usuario consultarPorNome(@NotNull String nome) {
