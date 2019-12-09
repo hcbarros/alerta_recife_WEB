@@ -2,14 +2,15 @@
 
     function esconder() {
         
-        document.getElementById("contatos").style.display = "none";
-        document.getElementById("resp").style.display = "block";
+        document.getElementById("contatos").style.display = "none";        
+        document.getElementById("condicoes").style.display = "block";
+        PF('resp').show();
     }
 
     function contatos() {
         
-        document.getElementById("contatos").style.display = "block";
-        document.getElementById("resp").style.display = "none";
+        document.getElementById("condicoes").style.display = "none";
+        document.getElementById("contatos").style.display = "block";               
     }
 
 

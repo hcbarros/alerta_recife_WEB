@@ -36,7 +36,7 @@ public class CadastroTelefone {
         Usuario usuarioLogado = (Usuario) sessao.getAttribute("logado");
         tel.setUsuario(usuarioLogado);        
         telefoneServico.persistir(tel);       
-        CadastroEndereco.resp = "Dados cadastrados com sucesso!";
+        CadastroEndereco.resp = "Telefone cadastrado com sucesso!";
 
         return "telefone";
     }

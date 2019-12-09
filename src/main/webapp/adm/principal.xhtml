@@ -10,20 +10,20 @@
         <h:head>
             <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
             <h:outputStylesheet library="css" name="styles.css" />
-            <h:outputScript library="js" name="index.js" />
-            
+            <h:outputScript library="js" name="index.js" />            
         </h:head>
         
 
-        <h:body onload="esconder()">
+        <h:body onload="esconder(),#{Indicador.condicoesAtuais()}">
             
             <p:layout fullPage="true">
 
-                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                <p:layoutUnit position="north" size="0" resizable="true" closable="true" collapsible="true">
                     <p:graphicImage style="width:80px; height:80px" library="imagens" name="logo.png"/>
                 </p:layoutUnit>
 
                 <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
+                                
                     
                 </p:layoutUnit>
 
@@ -39,6 +39,7 @@
                             <p:menuitem value="Listar contatos" onclick="contatos()" />
                             <p:menuitem action="/adm/usuarios.xhtml" value="Listar usuários" />
                             <p:menuitem action="/adm/alterarDados.xhtml" value="Alterar dados pessoais" />
+                            <p:menuitem action="/adm/previsaoTempo.xhtml" value="Previsão do tempo" />
                             <p:menuitem action="/indexLogin.xhtml" value="Sair" />
                         </p:submenu>
 
@@ -47,9 +48,32 @@
                 </p:layoutUnit>
 
                 <p:layoutUnit position="center">
+                                             
+                    <p:dialog visible='#{Endereco.resp.length() > 0 ? "true" : "false"}' appendTo="@(body)" 
+                              widgetVar="resp" modal="true" hideEffect="fade" showEffect="fade" height="150">
+                        <p:graphicImage style="width:80px; height:80px" library="imagens" name="verified.png"/>
+                        <h:outputText class="resp" value="#{Endereco.resp}" />                        
+                    </p:dialog>   
                     
-                    <p id="resp" style="font-size: 25px; font-weight: bold" >#{Endereco.resp}</p>
                     #{Endereco.setResp("")}
+                    
+                    <div id="condicoes">
+                         <p:growl id="msgs" showDetail="true"  />
+                             
+                                <p:fieldset id="field" legend="Condições atuais do tempo">
+                                    <h:panelGrid columns="2" cellpadding="5">
+                                        <p:graphicImage style="width:80px; height:80px" library="imagens" name="#{Indicador.imagem}" />
+                                        
+                                            <p class="tempo">Última atualização: #{Indicador.atualizacao}</p>
+                                            <p class="tempo">Tempo: #{Indicador.condicao}</p>
+                                            <p class="tempo">Temperatura média: #{Indicador.temp} °C</p>
+                                            <p class="tempo">Umidade relativa do ar: #{Indicador.umidade}%</p>
+                                            <p class="tempo">Velocidade do vento: #{Indicador.vento} km/h</p>
+                                    </h:panelGrid>
+                                    
+                                </p:fieldset>                
+                           
+                    </div>
                                        
                     <div style="display: none" id="contatos">
                         

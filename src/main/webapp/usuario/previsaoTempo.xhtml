@@ -31,7 +31,7 @@
                     <h:form>
                     <p:menu>
                         <p:submenu label="Opções">
-                            <p:menuitem action="/adm/principal.xhtml" value="Voltar" />
+                            <p:menuitem action="/usuario/principal.xhtml" value="Voltar" />
                             <p:menuitem action="/indexLogin.xhtml" value="Sair" />
                         </p:submenu>
 
@@ -42,33 +42,24 @@
                 <p:layoutUnit position="center">
                                  
                     <h:form>
-                        <p:dataTable id="radioDT" var="usuario" value="#{Usuario.lista}" selection="#{Usuario.selected}" rowKey="#{usuario.id}">
+                        <p:dataTable id="radioDT" var="tempo" value="#{Indicador.previsao}" >
                             <f:facet name="header">
-                                Selecione um usuário
+                                Previsão do tempo em Recife
                             </f:facet>                            
-                            <p:column headerText="Email">
-                                <h:outputText value="#{usuario.email}" />
+                            <p:column style="text-align: center; width: 20%" headerText="Dia">
+                                <h:outputText value="#{tempo.dia}" />
                             </p:column>
-                            <p:column headerText="Primeiro nome">
-                                <h:outputText value="#{usuario.primeiroNome}" />
+                            <p:column style="text-align: center; width: 20%" headerText="Temp. máx.">
+                                <h:outputText value="#{tempo.tempMax}" />
                             </p:column>
-                            <p:column headerText="Último nome">
-                                <h:outputText value="#{usuario.ultimoNome}" />
+                            <p:column style="text-align: center; width: 20%" headerText="Temp. mín.">
+                                <h:outputText value="#{tempo.tempMin}" />
                             </p:column>
-                            <p:column headerText="Habilitado">
-                                <h:outputText value="#{usuario.habilitado}" />
-                            </p:column>
-                            <p:column selectionMode="single" style="width:16px;text-align:center"/>
-                            <f:facet name="footer">
-                                <p:commandButton style="display: none;" process="radioDT" value="Processar" />
-                            </f:facet>
+                            <p:column headerText="Tempo">
+                                <h:outputText value="#{tempo.tempo}" />
+                            </p:column>                            
                         </p:dataTable>
-                                                   
-                        <p></p>
-                        <p:commandButton ajax="false" action="#{Usuario.excluir()}" value="Excluir" />
-                        <p:commandButton ajax="false" action="#{Usuario.alterar()}" value="Alterar" />
-                        <p:outputLabel binding="#{Usuario.mybutton}" id="mybutton" />
-                        <a style="color:red; font-size: 20px"><h:message for="mybutton" /></a>
+                                        
                     </h:form>   
                                                                 
                 </p:layoutUnit>

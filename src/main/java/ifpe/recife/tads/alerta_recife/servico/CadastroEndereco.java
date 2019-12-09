@@ -71,7 +71,7 @@ public class CadastroEndereco implements Serializable {
         endereco.setCoordenada(coordenada);                
         
         enderecoServico.persistir(endereco);    
-        resp = "Dados cadastrados com sucesso!";
+        resp = "Área cadastrada com sucesso!";
         
         return "cadastro";
     }
@@ -104,7 +104,7 @@ public class CadastroEndereco implements Serializable {
             c.set(ano, mes, dia, hora, min);
         sol.setDataSolicitacao(c.getTime());
         solicitacaoServico.persistir(sol);       
-        resp = "Dados cadastrados com sucesso!";
+        resp = "Solicitação cadastrada com sucesso!";
         
         return "retornoservico";
     }

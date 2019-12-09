@@ -36,7 +36,7 @@ public class CadastroContato {
         contato.setDescricao(descricao);
         contato.setNumero(Long.toString(telefone));
         contatoServico.persistir(contato);  
-        CadastroEndereco.resp = "Dados cadastrados com sucesso!";
+        CadastroEndereco.resp = "Contato cadastrado com sucesso!";
 
         return "telefone";
     }

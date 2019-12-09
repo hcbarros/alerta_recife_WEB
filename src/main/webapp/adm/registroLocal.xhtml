@@ -18,15 +18,7 @@
         <h:body>
             
             <p:layout fullPage="true">
-
-                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
-                    <p:graphicImage style="width:80px; height:80px" library="imagens" name="logo.png"/>
-                </p:layoutUnit>
-
-                <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
-                    
-                </p:layoutUnit>
-                
+         
               
                 <p:layoutUnit position="west" size="210" header="Servicos" collapsible="true">
                     <h:form>
@@ -43,20 +35,21 @@
                 <p:layoutUnit position="center">
                     <div id='myMap'  style='width: 100vw; height: 100vh;'></div>
                                         
-                    <p:dialog position="center" modal="true" width="300" appendTo="@(body)" header="Área de risco" widgetVar="dlg" hideEffect="fade" showEffect="fade">
+                    <p:dialog width="300" modal="true" appendTo="@(body)" header="Área de risco" 
+                              widgetVar="dlg" hideEffect="fade" showEffect="fade">
                      <h:form prependId="false">
                         <!--<h:panelGrid columns="2">-->
                         <!--Ajustar o posicionamento-->
                         <h:panelGrid >
-                            <a id="cidade" style="font-weight: bold; font-size: 15px" ></a>
+                            <h:outputText id="cidade" styleClass="address" value="" />
                             <h:inputHidden id="cidade1" value="#{Endereco.cidade}" />
-                            <a id="bairro" style="font-weight: bold; font-size: 15px" ></a>
+                            <h:outputText id="bairro" styleClass="address" value="" />
                             <h:inputHidden id="bairro1" value="#{Endereco.bairro}" />
-                            <a id="rua" style="font-weight: bold; font-size: 15px" ></a>
+                            <h:outputText id="rua" styleClass="address" value="" />
                             <h:inputHidden id="rua1" value="#{Endereco.rua}" />
-                            <a id="numero" style="font-weight: bold; font-size: 15px" ></a>
+                            <h:outputText id="numero" styleClass="address" value="" />
                             <h:inputHidden id="numero1" value="#{Endereco.numero}" />
-                            <a id="CEP" style="font-weight: bold; font-size: 15px" ></a>
+                            <h:outputText id="CEP" styleClass="address" value="" />
                             <h:inputHidden id="CEP1" value="#{Endereco.CEP}" />                            
                             
                             <h:inputHidden id="lat" value="#{Endereco.pontoX}" />

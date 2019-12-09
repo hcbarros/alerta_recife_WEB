@@ -1,4 +1,10 @@
-
+  
+.ui-fieldset {
+    display: inline-block;
+    margin-left: 300px;
+    margin-top: 70px;    
+} 
+  
 .ui-layout-unit {
     background: #00CED1
 }
@@ -7,6 +13,18 @@
 }
 .ui-layout-south .ui-layout-unit-content{
     background: #E8E8E8
+}
+
+.address, .tempo {
+    font-family: initial; 
+    font-weight: bold; 
+    font-size: 18px;    
+}
+
+.resp {
+    font-family: initial; 
+    font-weight: bold; 
+    font-size: 40px
 }
 
 .names {
