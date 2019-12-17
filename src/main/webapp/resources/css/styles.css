@@ -21,6 +21,12 @@
     font-size: 18px;    
 }
 
+.lonas, .vistorias, .sol {
+    font-family: initial; 
+    font-weight: bold; 
+    font-size: 22px;    
+}
+
 .resp {
     font-family: initial; 
     font-weight: bold; 

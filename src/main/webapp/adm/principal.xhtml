@@ -27,28 +27,39 @@
                     
                 </p:layoutUnit>
 
-               
-                <p:layoutUnit position="west" size="210" header="Servicos" collapsible="true">
+                
+                #{api.total = 0}
+                #{api.posicao = 0}
+                
+                <p:layoutUnit position="west" size="240" header="Servicos" collapsible="true">
                     <h:form>
-                    <p:menu>
-                        <p:submenu label="Opções">
-                            <p:menuitem action="/adm/registroLocal.xhtml" value="Registrar área de risco"/>
-                            <p:menuitem action="/adm/servico.xhtml" value="Solicitar serviço"/>
-                            <p:menuitem action="/adm/telefone.xhtml" value="Salvar telefone"/>
-                            <p:menuitem action="/adm/contato.xhtml" value="Salvar contato"/>
-                            <p:menuitem value="Listar contatos" onclick="contatos()" />
-                            <p:menuitem action="/adm/usuarios.xhtml" value="Listar usuários" />
-                            <p:menuitem action="/adm/alterarDados.xhtml" value="Alterar dados pessoais" />
-                            <p:menuitem action="/adm/previsaoTempo.xhtml" value="Previsão do tempo" />
-                            <p:menuitem action="/indexLogin.xhtml" value="Sair" />
-                        </p:submenu>
-
-                    </p:menu>
+                        <p:menubar>
+                            <p:submenu label="Opções">
+                                <p:menuitem action="/adm/registroLocal.xhtml" value="Registrar área de risco"/>
+                                <p:menuitem action="/adm/servico.xhtml" value="Solicitar serviço"/>
+                                <p:menuitem action="/adm/telefone.xhtml" value="Salvar telefone"/>
+                                <p:menuitem action="/adm/contato.xhtml" value="Salvar contato"/>
+                                <p:menuitem value="Listar contatos" onclick="contatos()" />
+                                <p:menuitem action="/adm/usuarios.xhtml" value="Listar usuários" />
+                                <p:menuitem action="/adm/alterarDados.xhtml" value="Alterar dados pessoais" />
+                                <p:menuitem action="/adm/previsaoTempo.xhtml" value="Previsão do tempo" />
+                                <p:menuitem action="/indexLogin.xhtml" value="Sair" />
+                            </p:submenu>                            
+                        </p:menubar>
+                        
                     </h:form>
                 </p:layoutUnit>
 
                 <p:layoutUnit position="center">
-                                             
+                    
+                    <h:form>
+                      <p:menuButton value="Acessar dados remotos">
+                          <p:menuitem ajax="false" action="#{api.buscarLonas()}" value="Lonas"/>
+                          <p:menuitem ajax="false" action="#{api.buscarVistorias()}" value="Vistorias"/>
+                          <p:menuitem ajax="false" action="#{api.buscarSolicitacoes()}" value="Solicitacoes"/>
+                      </p:menuButton>    
+                    </h:form>
+                        
                     <p:dialog visible='#{Endereco.resp.length() > 0 ? "true" : "false"}' appendTo="@(body)" 
                               widgetVar="resp" modal="true" hideEffect="fade" showEffect="fade" height="150">
                         <p:graphicImage style="width:80px; height:80px" library="imagens" name="verified.png"/>

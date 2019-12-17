@@ -1,3 +1,5 @@
 # Alterações
 
-Administrador e usuários comuns podem visualizar as condições atuais do tempo na cidade de Recife, como também, a previsão do tempo para os próximos 4 dias. Para tanto, foram criadas as classes IndicadorTempo.java e Tempo.java, fazendo-se uso de 2 endpoints fornecidos pela Agência Nacional de Pesquisas Espaciais que retornam os dados no formato xml.
+Fazendo-se uso da API da Defesa Civil do Recife, o administrador pode acessar o banco de dados do órgão e visualizar Informações relativas a operações com lonas, vistorias e solicitações realizadas pelos cidadãos. Ele tem acesso a uma listagem paginada, podendo-se fazer busca localizada. 
+
+

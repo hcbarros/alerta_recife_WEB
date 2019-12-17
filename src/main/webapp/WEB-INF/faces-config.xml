@@ -74,7 +74,19 @@
         <navigation-case>
             <from-outcome>cadastro</from-outcome>
             <to-view-id>/adm/principal.xhtml</to-view-id>
+        </navigation-case>   
+        <navigation-case>
+            <from-outcome>lonas</from-outcome>
+            <to-view-id>/adm/lonas.xhtml</to-view-id>
         </navigation-case>  
+        <navigation-case>
+            <from-outcome>vistorias</from-outcome>
+            <to-view-id>/adm/vistorias.xhtml</to-view-id>
+        </navigation-case>  
+        <navigation-case>
+            <from-outcome>solicitacoes</from-outcome>
+            <to-view-id>/adm/solicitacoes.xhtml</to-view-id>
+        </navigation-case>       
     </navigation-rule>   
     <navigation-rule>
         <from-view-id>/usuario/telefone.xhtml</from-view-id>

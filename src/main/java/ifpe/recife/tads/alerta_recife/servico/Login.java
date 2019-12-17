@@ -42,8 +42,8 @@ public class Login {
          try {
               String gRecaptchaResponse = context.
 		getExternalContext().getRequestParameterMap().get("g-recaptcha-response");
-               boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);
-               
+                //boolean verify = VerifyRecaptcha.verify(gRecaptchaResponse);
+                boolean verify = true;
               if(user != null) {
                     if(user.getSenha().equals(senha)) {
                              

@@ -106,12 +106,11 @@ public class IndicadorTempo implements Serializable {
             con.setRequestProperty("Content-Type", "application/xml");
             //con.setRequestProperty("Accept-Charset", "UTF-8, iso-8859-1;q=0.5");
             con.setRequestMethod("GET");
-            //con.getOutputStream().write(nome.getBytes("UTF-8"));
-
+            
             String response = null;
             StringBuilder sb = new StringBuilder();  
 
-            BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()));  
+            BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(),"ISO-8859-1"));  
 
             String line = null;
             while ((line = br.readLine()) != null) {  
@@ -136,9 +135,6 @@ public class IndicadorTempo implements Serializable {
                     temp = nodes.item(i).getTextContent();
                 if(nodes.item(i).getNodeName().equals("tempo")) { 
                    String t = nodes.item(i).getTextContent();
-                   Tempo tempo = new Tempo();
-                   tempo.setTempo(t);
-                   condicao = tempo.getTempo();
                    if(t.equals("ec") || t.equals("ci") || t.equals("pp") || t.equals("pp")
                            || t.equals("cm") || t.equals("pt") || t.equals("pm") 
                            || t.equals("np") || t.equals("pc") || t.equals("cv")
@@ -157,6 +153,8 @@ public class IndicadorTempo implements Serializable {
                    if(t.equals("t")) imagem = "tempestade.png";
                    
                 }
+                if(nodes.item(i).getNodeName().equals("tempo_desc"))
+                    condicao = nodes.item(i).getTextContent();
                 if(nodes.item(i).getNodeName().equals("umidade"))
                     umidade = nodes.item(i).getTextContent();
                 if(nodes.item(i).getNodeName().equals("vento_int"))

@@ -64,9 +64,9 @@
                         <br></br><br></br>
                         <p:outputLabel for="habilitado" style="font-weight: bold" value="Habilitado:" /> <br></br>
                         <p:selectOneMenu id="habilitado" value="#{Usuario.selected.habilitado}" style="width:125px">
-                                <f:selectItem itemLabel="False" itemValue="#{false}" />
-                                <f:selectItem itemLabel="True" itemValue="#{true}" />                                
-                            </p:selectOneMenu>
+                             <f:selectItem itemLabel="False" itemValue="#{false}" />
+                             <f:selectItem itemLabel="True" itemValue="#{true}" />                                
+                        </p:selectOneMenu>
                         <br></br><br></br>                        
                         <p:commandButton ajax="false" action="#{Usuario.alteraUsuario()}" value="Alterar" />
                         <p:outputLabel binding="#{Usuario.mybutton}" id="mybutton" />
